@@ -15,7 +15,7 @@ This project showcases text rendering using OpenGL. It demonstrates how to integ
 - 📄 Managing text display within a graphical context
 
 **Usage:**  
-To run this project, navigate to the `font_render_opengl` directory and follow the build instructions provided in the source files.
+To run this project, navigate to the `solution` file and make the project `font_render_opengl` as start up project. Ensure that all assets are correctly linked, and the necessary libraries are included.
 
 ---
 
@@ -28,7 +28,7 @@ This project simulates a pixel-based world, allowing for the creation and manipu
 - 🖼️ Tools for designing and interacting with pixel-based environments
 
 **Usage:**  
-Navigate to the `pixelWorld` directory and follow the compilation instructions in the source files to run the simulation.
+To run this project, navigate to the `solution` file and make the project `pixelWorld` as start up project. Ensure that all assets are correctly linked, and the necessary libraries are included.
 
 ---
 
@@ -41,12 +41,26 @@ This project focuses on rendering basic shapes using OpenGL. It serves as an int
 - 🎨 Application of colors and transformations to shapes
 
 **Usage:**  
-To explore this project, go to the `shaps_render` directory and follow the build and execution steps outlined in the source files.
+To run this project, navigate to the `solution` file and make the project `shaps_render` as start up project. Ensure that all assets are correctly linked, and the necessary libraries are included.
+
+---
+### 🚀 `spaceMonkey`
+**Description:**  
+This project features a space-themed game developed using c++, cosstume game engine. The game showcases a monkey navigating through space, avoiding obstacles, and collecting items, providing an engaging example of 2D game development.
+
+**Key Features:**
+- 🎮 Implementation of game mechanics such as player movement, collision detection, and scoring
+- 🌌 Utilization of my game engine capabilities for rendering graphics and handling game physics
+- 🎨 Incorporation of assets like sprites and backgrounds to enhance the visual experience
+
+**Usage:**  
+To run this project, navigate to the `solution` file and make the project `spaceMonkey` as start up project. Ensure that all assets are correctly linked, and the necessary libraries are included.
 
 ---
 
 ## 🚀 Getting Started
 
+warring: these project do not have make file it currently in development!
 To get started with any of these projects:
 
 1. **Clone the Repository:**
