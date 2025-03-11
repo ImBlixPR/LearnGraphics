@@ -102,7 +102,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)GLFW_INCLUDE_NONE</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Users\almak\OneDrive\Documents\Visual Studio 2022\Projects\LearnGraphics\vendor\STB\include;C:\Users\almak\OneDrive\Documents\Visual Studio 2022\Projects\LearnGraphics\vendor\GLM;C:\Users\almak\OneDrive\Documents\Visual Studio 2022\Projects\LearnGraphics\vendor\glad\include;C:\Users\almak\OneDrive\Documents\Visual Studio 2022\Projects\LearnGraphics\vendor\GLFW\include;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>

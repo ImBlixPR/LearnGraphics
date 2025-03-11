@@ -218,5 +218,42 @@ namespace Renderer
             prevPoint = point;
         }
     }
+    void DrawArcWithSrartAngle(glm::vec2 originPosition,
+        glm::vec3 color,
+        float startAngle,
+        float arcAngle,
+        float radius, float lineThickness, float lineGap, int segments)
+    {
+        // Convert angles to radians
+        float startRadians = startAngle * M_PI / 180.0f;
+        float arcRadians = arcAngle * M_PI / 180.0f;
+
+        // Calculate angle increment based on the arc angle
+        const float angleIncrement = arcRadians / segments;
+
+        // Store the previous point to connect segments
+        glm::vec2 prevPoint(
+            originPosition.x + radius * std::cos(startRadians),
+            originPosition.y + radius * std::sin(startRadians)
+        );
+
+        // Draw each segment of the arc
+        for (int i = 1; i <= segments; ++i) {
+            // Calculate angle for this segment
+            float angle = startRadians + i * angleIncrement;
+
+            // Calculate point on the arc
+            glm::vec2 point(
+                originPosition.x + radius * std::cos(angle),
+                originPosition.y + radius * std::sin(angle)
+            );
+
+            // Draw line from previous point to current point
+            DrawLine(prevPoint, point, lineThickness, lineGap, color);
+
+            // Update previous point
+            prevPoint = point;
+        }
+    }
 }
 

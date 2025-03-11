@@ -57,4 +57,13 @@ namespace Renderer
 		float lineGap = 0.0f,
 		int segments = 32 // more segments smooth cirle
 	);
+	void DrawArcWithSrartAngle(
+		glm::vec2 originPosition,
+		glm::vec3 color,
+		float arcAngle,    // in degrees
+		float startAngle = 0.0f,  // in degrees
+		float radius = 20.0f,
+		float lineThickness = 1.0f, float lineGap = 0.0f, int segments = 32
+	);
+
 }

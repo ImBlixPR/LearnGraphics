@@ -32,7 +32,7 @@ public:
     bool IsInsideObject(glm::vec2 position);
 
     // Transform getters and setters (new/modified)
-    void SetPosition(const glm::vec3& position);
+    void SetPosition(const glm::vec2& position);
     glm::vec2 GetPosition() const;
     void SetAngle(float angle);
     float GetAngle() const;

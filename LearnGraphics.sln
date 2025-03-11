@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "shaps_render", "shaps_rende
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pixelWorld", "pixelWorld\pixelWorld.vcxproj", "{7F826CA8-E3FA-4FBC-8638-D3CEF3D9AFEC}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SpaceMonkey", "SpaceMonkey\SpaceMonkey.vcxproj", "{3CAD8ED0-9965-4500-B1CC-9776814DEF9E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +43,14 @@ Global
 		{7F826CA8-E3FA-4FBC-8638-D3CEF3D9AFEC}.Release|x64.Build.0 = Release|x64
 		{7F826CA8-E3FA-4FBC-8638-D3CEF3D9AFEC}.Release|x86.ActiveCfg = Release|Win32
 		{7F826CA8-E3FA-4FBC-8638-D3CEF3D9AFEC}.Release|x86.Build.0 = Release|Win32
+		{3CAD8ED0-9965-4500-B1CC-9776814DEF9E}.Debug|x64.ActiveCfg = Debug|x64
+		{3CAD8ED0-9965-4500-B1CC-9776814DEF9E}.Debug|x64.Build.0 = Debug|x64
+		{3CAD8ED0-9965-4500-B1CC-9776814DEF9E}.Debug|x86.ActiveCfg = Debug|Win32
+		{3CAD8ED0-9965-4500-B1CC-9776814DEF9E}.Debug|x86.Build.0 = Debug|Win32
+		{3CAD8ED0-9965-4500-B1CC-9776814DEF9E}.Release|x64.ActiveCfg = Release|x64
+		{3CAD8ED0-9965-4500-B1CC-9776814DEF9E}.Release|x64.Build.0 = Release|x64
+		{3CAD8ED0-9965-4500-B1CC-9776814DEF9E}.Release|x86.ActiveCfg = Release|Win32
+		{3CAD8ED0-9965-4500-B1CC-9776814DEF9E}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

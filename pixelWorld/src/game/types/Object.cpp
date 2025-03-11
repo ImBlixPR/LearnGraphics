@@ -3,6 +3,7 @@
 
 #include "AssetManger/AssetManger.h"
 #include "Opengl/GL_renderer.h"
+#include "renderer/Renderer.h"
 
 
 
@@ -110,12 +111,18 @@ void Object::Draw()
 
     if (isSolid)
     {
-        OpenglRenderer::Render2dQuad(
+        //OpenglRenderer::Render2dQuad(
+        //    m_status.m_position,
+        //    color,
+        //    width,
+        //    height,
+        //    m_status.m_angle
+        //);
+        Renderer::DrawCircle(
             m_status.m_position,
             color,
-            width,
-            height,
-            m_status.m_angle
+            20.0f,
+            1.0f
         );
     }
     else
@@ -199,7 +206,7 @@ bool Object::IsInsideObject(glm::vec2 position)
         position.y <= centerPos.y + halfHeight);
 }
 
-void Object::SetPosition(const glm::vec3& position) {
+void Object::SetPosition(const glm::vec2& position) {
     m_status.m_position = position;
 }
 
