@@ -21,7 +21,7 @@ extern "C" {
 #include "utility/MeskUtil.h"
 #include "Input/Input.h"
 #include "renderer/Renderer.h"
-#include "util/LerpUtil.h"
+
 
 //game header
 #include "game/Game.h"

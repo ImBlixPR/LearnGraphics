@@ -69,6 +69,15 @@ namespace OpenglRenderer
         OriginPostion originPos = OriginPostion::Center,  // Origin point for rotation (0,0 is top-left, 0.5,0.5 is center)
         bool markOrigin = false
     );
+    void Render2dQuad(
+        glm::vec2 position,                 // Position (top-left corner)
+        glm::vec4 color,                    // Custom RGBA color
+        float width = 20.0f,                // Width of the quad
+        float height = 20.0f,               // Height of the quad (can be different from width)
+        float rotation = 0.0f,              // Rotation in degrees
+        OriginPostion originPos = OriginPostion::Center,  // Origin point for rotation (0,0 is top-left, 0.5,0.5 is center)
+        bool markOrigin = false
+    );
 
     //triangle Render call
     void Render2dTriangle(
@@ -102,6 +111,14 @@ namespace OpenglRenderer
     void Render2dCircle(
         glm::vec2 position,
         glm::vec3 color,
+        float radius = 20.0f,
+        float rotation = 0.0f,
+        int segments = 32,
+        bool markOrigin = false
+    );
+    void Render2dCircle(
+        glm::vec2 position,
+        glm::vec4 color,
         float radius = 20.0f,
         float rotation = 0.0f,
         int segments = 32,

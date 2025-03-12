@@ -133,7 +133,7 @@ namespace OpenglRenderer
         glm::vec2 originPosition = glm::vec2(width * origin.x + position.x, height * origin.y + position.y);
 
         g_shaders.triangles.SetMat4("model", model);
-        g_shaders.triangles.SetVec3("color", color);
+        g_shaders.triangles.SetVec4("color", glm::vec4(color, 1.0f));
         glBindVertexArray(g_shapeMesh.quad2d.GetVAO());
         glDrawElements(GL_TRIANGLES, g_shapeMesh.quad2d.GetIndexCount(), GL_UNSIGNED_INT, 0);
         
@@ -176,7 +176,50 @@ namespace OpenglRenderer
         glm::vec2 originPosition = glm::vec2(width * origin.x + position.x,height * origin.y+position.y);
 
         g_shaders.triangles.SetMat4("model", model);
-        g_shaders.triangles.SetVec3("color", color);
+        g_shaders.triangles.SetVec4("color", glm::vec4(color, 1.0f));
+        glBindVertexArray(g_shapeMesh.quad2d.GetVAO());
+        glDrawElements(GL_TRIANGLES, g_shapeMesh.quad2d.GetIndexCount(), GL_UNSIGNED_INT, 0);
+
+        if (markOrigin)
+        {
+            Render2dQuad(originPosition, ColorPreset::Green, 2.0f,
+                2.0f, 0.0f, OriginPostion::Center, false);
+        }
+    }
+
+    // Overloaded version that accepts explicit RGBA color values
+    void Render2dQuad(
+        glm::vec2 position,
+        glm::vec4 color,
+        float width,
+        float height,
+        float rotation,
+        OriginPostion originPos,
+        bool markOrigin
+    )
+    {
+        g_shaders.triangles.Use();
+        g_shaders.triangles.SetMat4("projection", g_orthgraphicCamera);
+        g_shaders.triangles.SetMat4("view", glm::mat4(1.0f));
+
+        // Create model matrix
+        glm::mat4 model = glm::mat4(1.0f);
+
+        glm::vec2 origin = GetOriginPostion(originPos);
+        // Apply transformations in the same order as the other function
+        model = glm::translate(model, glm::vec3(position.x, position.y, 0.0f));
+        model = glm::translate(model, glm::vec3(width * origin.x, height * origin.y, 0.0f));
+        if (rotation != 0.0f)
+        {
+            model = glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 0.0f, 1.0f));
+        }
+        model = glm::translate(model, glm::vec3(-width * origin.x, -height * origin.y, 0.0f));
+        model = glm::scale(model, glm::vec3(width, height, 1.0f));
+
+        glm::vec2 originPosition = glm::vec2(width * origin.x + position.x, height * origin.y + position.y);
+
+        g_shaders.triangles.SetMat4("model", model);
+        g_shaders.triangles.SetVec4("color", color);
         glBindVertexArray(g_shapeMesh.quad2d.GetVAO());
         glDrawElements(GL_TRIANGLES, g_shapeMesh.quad2d.GetIndexCount(), GL_UNSIGNED_INT, 0);
 
@@ -228,7 +271,7 @@ namespace OpenglRenderer
         glm::vec2 originPosition = glm::vec2(width * origin.x + position.x, height * origin.y + position.y);// -glm::vec2((float)width / 2, (float)height / 2);
 
         g_shaders.triangles.SetMat4("model", model);
-        g_shaders.triangles.SetVec3("color", color);
+        g_shaders.triangles.SetVec4("color", glm::vec4(color, 1.0f));
         glBindVertexArray(g_shapeMesh.triangle2d.GetVAO());
         glDrawElements(GL_TRIANGLES, g_shapeMesh.triangle2d.GetIndexCount(), GL_UNSIGNED_INT, 0);
 
@@ -278,7 +321,7 @@ namespace OpenglRenderer
         glm::vec2 originPosition = glm::vec2(width * origin.x + position.x, height * origin.y + position.y);// -glm::vec2((float)width / 2, (float)height / 2);
 
         g_shaders.triangles.SetMat4("model", model);
-        g_shaders.triangles.SetVec3("color", color);
+        g_shaders.triangles.SetVec4("color", glm::vec4(color,1.0f));
         glBindVertexArray(g_shapeMesh.equilateralTriangle2d.GetVAO());
         glDrawElements(GL_TRIANGLES, g_shapeMesh.equilateralTriangle2d.GetIndexCount(), GL_UNSIGNED_INT, 0);
 
@@ -342,7 +385,7 @@ namespace OpenglRenderer
         glm::vec2 originPosition = glm::vec2(radius * origin.x + position.x, radius * origin.y + position.y);
 
         g_shaders.triangles.SetMat4("model", model);
-        g_shaders.triangles.SetVec3("color", color);
+        g_shaders.triangles.SetVec4("color", glm::vec4(color, 1.0f));
         glBindVertexArray(g_shapeMesh.circle2d.GetVAO());
         glDrawElements(GL_TRIANGLES, g_shapeMesh.circle2d.GetIndexCount(), GL_UNSIGNED_INT, 0);
 
@@ -401,7 +444,65 @@ namespace OpenglRenderer
         glm::vec2 originPosition = glm::vec2(radius * origin.x + position.x, radius * origin.y + position.y);
 
         g_shaders.triangles.SetMat4("model", model);
-        g_shaders.triangles.SetVec3("color", color);
+        g_shaders.triangles.SetVec4("color", glm::vec4(color,1.0f));
+
+        glBindVertexArray(g_shapeMesh.circle2d.GetVAO());
+        glDrawElements(GL_TRIANGLE_FAN, g_shapeMesh.circle2d.GetIndexCount(), GL_UNSIGNED_INT, 0);
+        // Optionally mark the origin point
+        if (markOrigin)
+        {
+            Render2dQuad(originPosition, ColorPreset::Green, 2.0f, 2.0f, 0.0f, OriginPostion::Center, false);
+        }
+    }
+    // Overloaded version that accepts explicit RGBA color values
+    void Render2dCircle(
+        glm::vec2 position,
+        glm::vec4 color,
+        float radius,
+        float rotation,
+        int segments,
+        bool markOrigin
+    )
+    {
+        // If we want a custom number of segments, regenerate the geometry
+        if (segments != 32) {
+            g_shapeMesh.circle2d.UpdateVertexBuffer(
+                ShapeInfo::Circle2d::GetVertices(segments),
+                ShapeInfo::Circle2d::GetIndices(segments)
+            );
+        }
+        else {
+            g_shapeMesh.circle2d.UpdateVertexBuffer(
+                ShapeInfo::Circle2d::vertices,
+                ShapeInfo::Circle2d::indices
+            );
+        }
+
+        g_shaders.triangles.Use();
+        g_shaders.triangles.SetMat4("projection", g_orthgraphicCamera);
+        g_shaders.triangles.SetMat4("view", glm::mat4(1.0f));
+
+        // Get origin position
+        glm::vec2 origin = GetOriginPostion(OriginPostion::Top_left);
+
+        // Create model matrix
+        glm::mat4 model = glm::mat4(1.0f);
+
+        // Apply transformations
+        model = glm::translate(model, glm::vec3(position.x, position.y, 0.0f));
+        model = glm::translate(model, glm::vec3(radius * origin.x, radius * origin.y, 0.0f));
+        if (rotation != 0.0f)
+        {
+            model = glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 0.0f, 1.0f));
+        }
+        model = glm::translate(model, glm::vec3(-radius * origin.x, -radius * origin.y, 0.0f));
+        model = glm::scale(model, glm::vec3(radius * 2.0f, radius * 2.0f, 1.0f)); // Scale by diameter
+
+        // Calculate the position of the origin point for marking
+        glm::vec2 originPosition = glm::vec2(radius * origin.x + position.x, radius * origin.y + position.y);
+
+        g_shaders.triangles.SetMat4("model", model);
+        g_shaders.triangles.SetVec4("color", color);
 
         glBindVertexArray(g_shapeMesh.circle2d.GetVAO());
         glDrawElements(GL_TRIANGLE_FAN, g_shapeMesh.circle2d.GetIndexCount(), GL_UNSIGNED_INT, 0);
@@ -451,7 +552,7 @@ namespace OpenglRenderer
         glm::vec2 originPosition = glm::vec2(width * origin.x + position.x, height * origin.y + position.y);
 
         g_shaders.triangles.SetMat4("model", model);
-        g_shaders.triangles.SetVec3("color", color);
+        g_shaders.triangles.SetVec4("color", glm::vec4(color, 1.0f));
         glBindVertexArray(mesh->GetVAO());
         glDrawElements(GL_TRIANGLES, mesh->GetIndexCount(), GL_UNSIGNED_INT, 0);
 
