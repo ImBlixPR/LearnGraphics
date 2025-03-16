@@ -24,6 +24,7 @@ namespace BackEnd
 	int GetWindowCurrentWidth();
 	int GetWindowCurrentHeight();
 	float GetDeltaTime();
+	void EnableCursor(bool enable);
 
 
 

@@ -34,14 +34,11 @@ int main() {
     MK_ASSERT(BackEnd::GetWindowPointer(), "the window do not initilize!");
     OpenglRenderer::Init();
     OpenglRenderer::HotLoadShaders();
-
     //game
-    if(!Game::Init()) return 0;
 
+    if (!Game::Init()) return 0;
     while (BackEnd::WindowIsOpen())
-    {
-
-
+    {   
         BackEnd::StartFrame();
         BackEnd::UpdateSubSystem();
         BackEnd::HandleSubSystem();
@@ -50,14 +47,21 @@ int main() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         //166, 177, 209
         Renderer::DotedBackground(MiskUtil::GetNormalizeRGBColor(166.0f, 177.0f, 209.0f), 2.0f, 14, 14);
-        Game::Run(BackEnd::GetDeltaTime());
-        
+
+        // Modified to always call Menu() first for the transition
+        if (!Game::IsRunning())
+            Game::Menu();
+        else
+        {
+            //printf("work here\n");
+            Game::Run(BackEnd::GetDeltaTime());
+        }
+
+        Game::UpdateTransition(BackEnd::GetDeltaTime());
+
         BackEnd::EndFrame();
     }
     Game::Clear();
-
-
-
     return 0;
 }
 

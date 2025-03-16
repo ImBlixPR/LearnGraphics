@@ -40,6 +40,7 @@ namespace BackEnd
 	GLFWwindow* g_window;
 	bool g_forceWindowClose = false;
 	float g_LastTime = 0.0f;
+	float g_timestep = 0.0f;
 
 //=========================================================================================================
 
@@ -132,6 +133,9 @@ namespace BackEnd
 	void UpdateSubSystem()
 	{
 		Input::Update();
+		float time = (float)glfwGetTime();
+		g_timestep = time - g_LastTime;
+		g_LastTime = time;
 	}
 
 	void HandleSubSystem()
@@ -196,10 +200,18 @@ namespace BackEnd
 	}
 	float GetDeltaTime()
 	{
-		float time = (float)glfwGetTime();
-		float timestep = time - g_LastTime;
-		g_LastTime = time;
-		return timestep;
+		return g_timestep;
+	}
+	void EnableCursor(bool enable)
+	{
+		if (g_window)
+		{
+			if(enable)
+				glfwSetInputMode(g_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+			else
+				glfwSetInputMode(g_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
+		}
 	}
 }
 
