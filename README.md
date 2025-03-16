@@ -52,6 +52,8 @@ This project features a space-themed game developed using c++, cosstume game eng
 - 🎮 Implementation of game mechanics such as player movement, collision detection, and scoring
 - 🌌 Utilization of my game engine capabilities for rendering graphics and handling game physics
 - 🎨 Incorporation of assets like sprites and backgrounds to enhance the visual experience
+  ![Screenshot 2025-03-13 010641](https://github.com/user-attachments/assets/e8481911-02da-421e-85ce-65b7cce7d052)
+
 
 **Usage:**  
 To run this project, navigate to the `solution` file and make the project `spaceMonkey` as start up project. Ensure that all assets are correctly linked, and the necessary libraries are included.
