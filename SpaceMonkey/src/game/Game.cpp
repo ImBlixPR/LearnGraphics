@@ -782,6 +782,14 @@ namespace Game
         if (isTransitioning) {
             if (transitionTimer < GROW_DURATION + HOLD_DURATION) return;
         }
+        //return to the menu
+        if (Input::KeyPressed(MK_KEY_M))
+        {
+            running = false;
+            Clear();
+            Init();
+            return;
+        }
         // Skip game logic if game over
         if (gameOver) {
             // Display game over message or screen
@@ -807,14 +815,7 @@ namespace Game
         }
 
 
-        //return to the menu
-        if (Input::KeyPressed(MK_KEY_M))
-        {
-            running = false;
-            Clear();
-            Init();
-            return;
-        }
+
         //trik the time
         pulseTimer += dt;
         if (pulseTimer > 6.28f) // Reset after 2π
